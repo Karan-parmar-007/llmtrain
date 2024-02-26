@@ -11,9 +11,9 @@ from huggingface_hub import login
 class Train:
 
   def __init__(self):
-    self.data = "tatsu-lab/alpaca"
-    self.train_size = "train[:10]"  #Picking first 10 rows for faster training
-    self.model_id = "meta-llama/Llama-2-7b-hf"
+    self.data = "Lee-H/gittry"
+    self.train_size = "train[:]"  #Picking first 10 rows for faster training
+    self.model_id = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
 
   def train_llama(self):
 
@@ -57,7 +57,7 @@ class Train:
     trainer = SFTTrainer(
       model=model, 
       train_dataset=train_dataset,
-      dataset_text_field="text",
+      dataset_text_field="formatted_responses",
       max_seq_length=1024, 
       tokenizer=tokenizer, 
       args=training_args, 
